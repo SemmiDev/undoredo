@@ -105,6 +105,7 @@
         onfocus="onFocus()"
         onchange="onChange()"
         oninput="inInput()"
+        onblur="onBlur()"
       ></textarea>
     </div>
     <script>
@@ -142,6 +143,10 @@
 
       const inInput = () => {
         status.innerHTML = 'ciee dinda lagi ngetik nih'
+      }
+
+      const onBlur = () => {
+        status.innerHTML = ''
       }
 
       const save = () => {
