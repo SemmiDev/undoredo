@@ -29,7 +29,9 @@
     <h3 class="mt-5 mb-2 font-sans text-xl font-thin text-center md:text-2xl">
       Spesial buat dindaku tersayang
     </h3>
-    <p class="font-mono italic text-center text-teal-200" id="status"></p>
+    <p class="font-mono italic text-center text-teal-200" id="status">
+      Hihihi ♡
+    </p>
     <div class="container flex flex-col min-h-screen gap-5 p-5 m-10 mx-auto">
       <div>
         <div class="flex justify-between gap-2">
@@ -105,7 +107,6 @@
         onfocus="onFocus()"
         onchange="onChange()"
         oninput="inInput()"
-        onblur="onBlur()"
       ></textarea>
     </div>
     <script>
@@ -118,9 +119,6 @@
         index--
         document.querySelector('textarea').value = stack[index]
         status.innerText = `Berhasil di undo`
-        setTimeout(() => {
-          status.innerHTML = ''
-        }, 2000)
       }
 
       const redo = () => {
@@ -128,9 +126,6 @@
         index++
         document.querySelector('textarea').value = stack[index]
         status.innerText = `Berhasil di redo`
-        setTimeout(() => {
-          status.innerHTML = ''
-        }, 2000)
       }
 
       const onChange = () => {
@@ -145,18 +140,11 @@
         status.innerHTML = 'ciee dinda lagi ngetik nih'
       }
 
-      const onBlur = () => {
-        status.innerHTML = ''
-      }
-
       const save = () => {
         const text = document.querySelector('textarea').value
         stack.push(text)
         index++
         status.innerText = `Berhasil di simpan`
-        setTimeout(() => {
-          status.innerHTML = ''
-        }, 2000)
       }
     </script>
   </body>
