@@ -25,22 +25,23 @@
       }
     </style>
   </head>
-  <body class="bg-gray-900 text-gray-300">
-    <h3 class="text-xl md:text-2xl text-center font-thin mt-5 mb-2 font-sans">
+  <body class="text-gray-300 bg-gray-900">
+    <h3 class="mt-5 mb-2 font-sans text-xl font-thin text-center md:text-2xl">
       Spesial buat dindaku tersayang
     </h3>
-    <div class="container mx-auto m-10 flex flex-col gap-5 min-h-screen p-5">
+    <p class="font-mono italic text-center text-teal-200" id="status"></p>
+    <div class="container flex flex-col min-h-screen gap-5 p-5 m-10 mx-auto">
       <div>
         <div class="flex justify-between gap-2">
-          <div class="flex px-3 gap-2">
+          <div class="flex gap-2 px-3">
             <button
-              class="bg-slate-500 p-2 rounded-full hover:bg-slate-600 hover:text-white transition-all duration-300"
+              class="p-2 transition-all duration-300 rounded-full bg-slate-500 hover:bg-slate-600 hover:text-white"
               id="undo"
               onclick="undo()"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
+                class="w-6 h-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -54,13 +55,13 @@
               </svg>
             </button>
             <button
-              class="bg-slate-500 p-2 rounded-full hover:bg-slate-600 hover:text-white transition-all duration-300"
+              class="p-2 transition-all duration-300 rounded-full bg-slate-500 hover:bg-slate-600 hover:text-white"
               id="redo"
               onclick="redo()"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
+                class="w-6 h-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -76,13 +77,13 @@
           </div>
           <div class="flex">
             <button
-              class="bg-slate-500 p-2 rounded-full hover:bg-slate-600 hover:text-white transition-all duration-300"
+              class="p-2 transition-all duration-300 rounded-full bg-slate-500 hover:bg-slate-600 hover:text-white"
               id="save"
               onclick="save()"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
+                class="w-6 h-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -99,30 +100,58 @@
         </div>
       </div>
       <textarea
-        class="w-full h-96 p-4 border-2 border-gray-300 rounded-lg focus:outline-none text-2xl focus:border-blue-500"
+        class="w-full p-4 text-2xl border-2 border-gray-300 rounded-lg shadow-md h-96 focus:outline focus:shadow-orange-200 focus:border-blue-500 shadow-teal-200"
         placeholder="Type something here yaa sayangkuu..."
+        onfocus="onFocus()"
+        onchange="onChange()"
+        oninput="inInput()"
       ></textarea>
     </div>
     <script>
       let stack = ['']
       let index = 0
+      let status = document.getElementById('status')
 
       const undo = () => {
         if (index <= 0) return
         index--
         document.querySelector('textarea').value = stack[index]
+        status.innerText = `Berhasil di undo`
+        setTimeout(() => {
+          status.innerHTML = ''
+        }, 2000)
       }
 
       const redo = () => {
         if (index >= stack.length - 1) return
         index++
         document.querySelector('textarea').value = stack[index]
+        status.innerText = `Berhasil di redo`
+        setTimeout(() => {
+          status.innerHTML = ''
+        }, 2000)
+      }
+
+      const onChange = () => {
+        console.log('He')
+      }
+
+      const onFocus = () => {
+        status.innerHTML = 'Silahkan mulai ngetik sayang'
+      }
+
+      const inInput = () => {
+        status.innerHTML = 'ciee dinda lagi ngetik nih'
       }
 
       const save = () => {
         const text = document.querySelector('textarea').value
         stack.push(text)
         index++
+        status.innerText = `Berhasil di simpan`
+        setTimeout(() => {
+          status.innerHTML = ''
+        }, 2000)
       }
     </script>
   </body>
